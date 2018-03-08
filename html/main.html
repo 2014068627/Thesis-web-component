@@ -1,23 +1,30 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="../css/main.css">
-  <script type="text/jQuery" src="jquery-3.3.1.min.js"></script>
+  <script src="../jquery-3.3.1.min.js"></script>
   <script type="text/javascript">
+      $(document).ready( function() {
+       $(".edit").click(function showEdit(){
+         con = document.getElementById('popBG');
+         form1 = document.getElementById('addUser');
+         form2 = document.getElementById('EditUser');
+         find = document.getElementsByClassName('edit');
+         var index = $(".edit").index(this);
+         username = document.getElementsByClassName("userNameVal")[index].value;
+         form1.style.display = "none";
+         form2.style.display = "block";
+         con.style.display = "block";
+         alert(username);
+         document.getElementById("editUserName").value = username;
+       });
+    });
+
     function showAdd() {
       con = document.getElementById('popBG');
       form1 = document.getElementById('addUser');
       form2 = document.getElementById('EditUser');
       form1.style.display = "block";
       form2.style.display = "none";
-      con.style.display = "block";
-    }
-
-    function showEdit(x) {
-      con = document.getElementById('popBG');
-      form1 = document.getElementById('addUser');
-      form2 = document.getElementById('EditUser');
-      form1.style.display = "none";
-      form2.style.display = "block";
       con.style.display = "block";
     }
 
@@ -39,7 +46,8 @@
 
     <!--DIV contains user name, edit button, and delete button-->
     <div class="UserContainer">
-      <div class="UserName"><br><span>Juan Dela Cruz<span></div>
+      <input type="hidden" value="JuanDC">
+      <div class="UserName"><br><input class="userNameVal" name="username" value="Juan Dela Cruz"></div>
       <button class="edit" onclick="javascript:showEdit(this);"><img src="../sources/edit.png"></button>
       <form class="delete">
         <input type="hidden" value="">
@@ -61,9 +69,9 @@
         USERNAME:
         <input class="input" type="text" name="username" required>
         PASSWORD:
-        <input class="input" type="password" name="username" required>
+        <input class="input" type="password" name="password" required>
         CONFIRM PASSWORD:
-        <input class="input" type="password" name="username" required>
+        <input class="input" type="password" name="cpassword" required>
         <div class="SCCon">
           <input id="submitBttn" type="submit" value="CREATE">
           <input id="cancelBttn" type="button" value="CANCEL" onclick="javascript:Cancel();">
@@ -73,11 +81,11 @@
       <form id="EditUser">
         <div>EDIT USER</div>
         NAME:
-        <input class="input" type="text" name="name" required>
+        <input class="input" id="editName" type="text" name="name" required>
         USERNAME:
-        <input class="input" type="text" name="username" required>
+        <input class="input" id="editUserName" type="text" name="username" required>
         PASSWORD:
-        <input class="input" type="password" name="username" required>
+        <input class="input" id="editPass" type="password" name="password" required>
         <div class="SCCon">
           <input id="submitBttn" type="submit" value="CREATE">
           <input id="cancelBttn" type="button" value="CANCEL" onclick="javascript:Cancel();">
