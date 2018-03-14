@@ -8,7 +8,8 @@
     if(isset($_POST['username']) and isset($_POST['password'])){
         $username = $_POST['username'];
         $password = $_POST['password'];
-        $query = "SELECT DISTINCT USERNAME, PASSWORD FROM user_table where id=1 AND username='$username' AND password='$password'";
+        $hashed_password = crypt($password, $salt_key);
+        $query = "SELECT DISTINCT USERNAME, PASSWORD FROM user_table where id=1 AND username='$username' AND password='$hashed_password'";
         
         //gets result from query getting the first id and username and password
         $result = mysqli_query($connection, $query) or die(mysqli_error($connection));
