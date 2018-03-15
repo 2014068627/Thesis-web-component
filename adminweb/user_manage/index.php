@@ -82,6 +82,13 @@
                 <!-- .SCCon -->
             </form>
             <!-- #EditUser -->
+            <div id="changePassword">
+                CHANGE PASSWORD:
+                <input class="editInput" id="editPass" type="text" name="password" autocomplete="off" data-uid="">
+                <div id="CPCon">
+                    <input type="submit" id="btnchangePassword" value="CHANGE PASSWORD">
+                </div>
+            </div>
             <!--
             <form>
                 PASSWORD:

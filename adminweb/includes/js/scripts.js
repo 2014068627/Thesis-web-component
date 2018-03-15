@@ -11,9 +11,14 @@ $(document).ready( function() {
             con = document.getElementById('popBG');
             form1 = document.getElementById('addUser');
             form2 = document.getElementById('EditUser');
+            div1 = document.getElementById('changePassword');
+            div1.style.display = "block";
             form1.style.display = "none";
             form2.style.display = "block";
             con.style.display = "block";
+
+            $('#editPass').attr('data-uid', user_id);
+
             $('#editName').val(jsondata.name);
             $('#editUsername').val(jsondata.username);
             $('#editId').val(jsondata.id);
@@ -81,10 +86,22 @@ $(document).ready( function() {
                 return true;
             }else{
                 //username has duplicate
+                alert('Username is not unique');
                 return false;
             }
         }else{
             //any of input are either less than 4 or greater than 50
+            var error = "";
+            if(name.length < 4 || name.length > 50){
+                error = error + "Name must not be less than 4 characters \n";
+            }
+            if(username.length < 4 || username.length > 50){
+                error = error + "Username must not be less than 4 characters \n";
+            }
+            if(password.length < 4 || password.length > 50){
+                error = error + "Password must not be less than 4 characters";
+            }
+            alert(error);
             return false;
         }
         return false;
@@ -104,22 +121,52 @@ $(document).ready( function() {
                 //username is unique
                 if(init_name === name && init_user === username){
                     //Input does not change
-                    alert('Want to change something?');
+                    alert('No information were changed.');
                     return false;
                 }else{
                     //Input changes
-                    alert('submitted');
                     return true;
                 }
             }else{
                 //username has duplicate
+                alert('Username is not unique');
                 return false;
             }
         }else{
             //one of the inputs are either less than 4 or 50 in length
+            var error = "";
+            if(name.length < 4 || name.length > 50){
+                error = error + "Name must not be less than 4 characters \n";
+            }
+            if(username.length < 4 || username.length > 50){
+                error = error + "Username must not be less than 4 characters";
+            }
+            alert(error);
             return false;
         }
     });
+    /**
+     * Jquery function when admin change its password
+     */
+
+    $('#btnchangePassword').click(function(e){
+        var password = $('#editPass').val();
+
+        if(password.length > 4 && password.length < 50){
+            var user_id = $('#editPass').attr('data-uid');
+            var url = 'crud_user_update.php?id=' + user_id + '&password=' +password;
+            $.ajax({
+                url: url,
+                type: 'PUT',
+                success: function(data){
+                    alert(data);
+                    window.location = "";
+                }
+            });
+        }else{
+            alert('Password length must be greater than 4');
+        }
+    })
 });
 /*
     Function to call in validating input username in Edit form
@@ -170,6 +217,8 @@ function showAdd() {
     con = document.getElementById('popBG');
     form1 = document.getElementById('addUser');
     form2 = document.getElementById('EditUser');
+    div1 = document.getElementById('changePassword');
+    div1.style.display = "none";
     form1.style.display = "block";
     form2.style.display = "none";
     con.style.display = "block";
@@ -181,8 +230,12 @@ function Cancel(){
     con = document.getElementById('popBG');
     form1 = document.getElementById('addUser');
     form2 = document.getElementById('EditUser');
+    div1 = document.getElementById('changePassword');
+    div1.style.display = "none";
     form1.style.display = "none";
     form2.style.display = "none";
     con.style.display = "none";
+    $('#editPass').attr('data-uid', '');
     $('input.input').val('');
+    $('input.editInput').val('' );
 }
