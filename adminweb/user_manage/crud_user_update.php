@@ -59,7 +59,7 @@ switch($method){
         if(isset($_GET['password']) && isset($_GET['id'])){
             $password = $_GET['password'];
             $id = $_GET['id'];
-            if(strlen($password) > 4 && strlen($password < 50)){
+            if(strlen($password) > 4 && strlen($password) < 50){
                 $hashed_password = crypt($password, $salt_key);
                 $sql = "UPDATE user_table SET password='$hashed_password' WHERE id=$id";
                 if(mysqli_query($connection, $sql)){
