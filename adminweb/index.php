@@ -25,12 +25,10 @@
   </video>
   <br><br><br>
   <div class="container"><br><br><br><br>
-    <form action="login.php" method="POST">
+    <form id="loginForm" action="login.php" method="POST">
       <img src="includes/src/logo.png"/><span>LIGHTS AND SOCKETS</span><br>
-
       <?php
       if(isset($_GET['auth'])){
-
         //get url /?auth=false
         $auth = $_GET['auth'];
         if($auth == 'false'){
@@ -43,16 +41,16 @@
       }else{
         //do something
       }
-
       ?>
-      
-      <input class="input" type="text" name="username" placeholder="USERNAME" required>
+      <input class="input" type="text" id="username" name="username" placeholder="USERNAME" required>
       <br><br>
-      <input class="input" type="password" name="password" placeholder="PASSWORD" required>
+      <input class="input" type="password" id="password" name="password" placeholder="PASSWORD" required>
       <br><br>
       <input id="submit" type="submit" value="LOGIN">
     </form>
   </div>
 
+    <script src="includes/js/jquery-3.3.1.min.js"></script>
+    <script src="includes/js/script.js"></script>
 </body>
 </html>

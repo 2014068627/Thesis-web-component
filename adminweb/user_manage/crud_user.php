@@ -8,7 +8,6 @@ $method = $_SERVER["REQUEST_METHOD"];
 //switch case to get HTTP method
 switch($method){
     case 'GET':
-        
         /**
          * Get user information using AJAX call from Jquery
          */
